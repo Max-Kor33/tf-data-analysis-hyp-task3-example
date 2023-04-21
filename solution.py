@@ -1,11 +1,10 @@
 import pandas as pd
 import numpy as np
+from scipy.stats import ttest_ind
 
+chat_id = 957195795 # Ваш chat ID, не меняйте название переменной
 
-chat_id = 123456 # Ваш chat ID, не меняйте название переменной
-
-def solution(...) -> bool: # Одна или две выборке на входе, заполняется исходя из условия
-    # Измените код этой функции
-    # Это будет вашим решением
-    # Не меняйте название функции и её аргументы
-    return ... # Ваш ответ, True или False
+def solution(x, y):
+    ## Взял T-test тк дисперсия и матожидания конечны
+    res = ttest_ind(x, y, equal_var=False, alternative='two-sided')
+    return res.pvalue < 0.03
